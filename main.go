@@ -16,8 +16,7 @@ func main() {
 	//runTest(l)
 
 
-	i := inodeUse{mountPoint: "/", level: "medium"}
-
+	i := inodeUse{mountPoint: "/", level: 100, duration: 20}
 	runTest(i)
 
 

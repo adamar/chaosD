@@ -101,7 +101,11 @@ func CreateDirIfNotExist(dir string) {
 }
 
 
+func createEmptyFile(loc string) {
 
+	os.OpenFile(loc, os.O_RDONLY|os.O_CREATE, 0666)
+
+}
 
 
 

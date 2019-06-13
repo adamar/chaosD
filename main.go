@@ -1,18 +1,34 @@
 package main
 
 import (
-//"time"
+	//"time"
+	"fmt"
+	_ "github.com/adamar/chaosd/plugins/inodepressure"
 )
+
+type Client struct {
+	configFile string
+	dbPath     string
+}
+
+func NewClient(configFile string) *Client {
+	client := &Client{
+		configFile: configFile,
+		dbPath:     "/tmp/.db",
+	}
+
+	return client
+}
+
+func (c *Client) Run() {
+
+	fmt.Println("Run chaosD")
+
+}
 
 func main() {
 
-	//d := diskIOSpike{volume: "/dev/sda1", level: "medium"}
-	//l := latencySpike{networkIntface: "eth0", level: "medium"}
-
-	//runTest(d)
-	//runTest(l)
-
-	i := inodeUse{mountPoint: "/", level: 100, duration: 20}
-	runTest(i)
+	chaosd := NewClient("/etc/chaod/config")
+	chaosd.Run()
 
 }

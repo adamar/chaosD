@@ -1,32 +1,13 @@
-package main
+package common
 
 import (
 	"fmt"
 	"net"
 	"os"
-	"os/exec"
 	"syscall"
 )
 
-func enableLatency() {
-	cmd := "tc"
-	args := []string{"qdisc", "add", "dev", "eth0", "root", "netem", "delay", "97ms"}
-	if err := exec.Command(cmd, args...).Run(); err != nil {
-		fmt.Fprintln(os.Stderr, err)
-		os.Exit(1)
-	}
-}
-
-func disableLatency() {
-	cmd := "tc"
-	args := []string{"qdisc", "del", "dev", "eth0", "root", "netem"}
-	if err := exec.Command(cmd, args...).Run(); err != nil {
-		fmt.Fprintln(os.Stderr, err)
-		os.Exit(1)
-	}
-}
-
-func listInterfaces() {
+func ListInterfaces() {
 
 	intf, _ := net.Interfaces()
 	for _, e := range intf {
@@ -34,7 +15,7 @@ func listInterfaces() {
 	}
 }
 
-func createFile(path string) {
+func CreateFile(path string) {
 	// detect if file exists
 	var _, err = os.Stat(path)
 
@@ -46,7 +27,7 @@ func createFile(path string) {
 	}
 }
 
-func getInodeStats(mountPoint string) {
+func GetInodeStats(mountPoint string) {
 	//https://linux.die.net/man/2/statvfs
 
 	var stat syscall.Statfs_t
@@ -59,7 +40,7 @@ func getInodeStats(mountPoint string) {
 
 }
 
-func getBlockStats(mountPoint string) {
+func GetBlockStats(mountPoint string) {
 	//https://linux.die.net/man/2/statvfs
 
 	var stat syscall.Statfs_t
@@ -84,7 +65,7 @@ func CreateDirIfNotExist(dir string) {
 	}
 }
 
-func createEmptyFile(loc string) {
+func CreateEmptyFile(loc string) {
 
 	os.OpenFile(loc, os.O_RDONLY|os.O_CREATE, 0666)
 

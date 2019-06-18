@@ -5,7 +5,7 @@ import (
 )
 
 type Testplugin struct {
-	Level string
+	Level    string
 	Duration string
 }
 

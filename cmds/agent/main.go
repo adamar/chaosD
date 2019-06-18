@@ -1,14 +1,15 @@
 package main
 
 import (
-	"fmt"
 	"encoding/json"
-	"github.com/adamar/chaosd/plugins"
+	"fmt"
 	"github.com/adamar/chaosd/common"
+	"github.com/adamar/chaosd/plugins"
+	"github.com/spf13/viper"
+
 	//_ "github.com/adamar/chaosd/plugins/inodepressure"
 	_ "github.com/adamar/chaosd/plugins/networklatency"
 	_ "github.com/adamar/chaosd/plugins/testplugin"
-	"github.com/spf13/viper"
 )
 
 type Client struct {
@@ -16,8 +17,6 @@ type Client struct {
 	dbPath           string
 	installedPlugins map[string]plugins.Creator
 }
-
-
 
 func NewClient(configFile string) *Client {
 	client := &Client{
@@ -36,7 +35,6 @@ func (c *Client) Run() {
 
 }
 
-
 func (c *Client) loadAgentConfig() {
 
 	// name of config file (without extension)
@@ -47,7 +45,7 @@ func (c *Client) loadAgentConfig() {
 	viper.SetConfigType("yaml")
 
 	// set config defaults
-        viper.SetDefault("dbPath", "/tmp/.db")
+	viper.SetDefault("dbPath", "/tmp/.db")
 
 	// read in config
 	err := viper.ReadInConfig()
@@ -57,11 +55,10 @@ func (c *Client) loadAgentConfig() {
 		fmt.Println("Reading agent config in from disk")
 	}
 
-	// get dbpath 
+	// get dbpath
 	c.dbPath = viper.GetString("dbPath")
 
 }
-
 
 func (c *Client) loadExperiments() {
 
@@ -73,12 +70,11 @@ func (c *Client) loadExperiments() {
 		fmt.Println("Config file loading error")
 	}
 	//config := make(map[string]string)
-        config["Level"] = "5"
+	config["Level"] = "5"
 	config["Duration"] = "10"
-        cons := plugins.EnabledPlugins["Testplugin"]
-        experiment := cons(config)
-        fmt.Printf("%+v\n", experiment)
-
+	cons := plugins.EnabledPlugins["Testplugin"]
+	experiment := cons(config)
+	fmt.Printf("%+v\n", experiment)
 
 }
 

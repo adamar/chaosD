@@ -15,13 +15,13 @@ type Inodepressure struct {
 }
 
 func init() {
-        plugins.Add("Inodepressure", func(config map[string]string) plugins.Plugin {
-                return &Inodepressure{MountPoint: config["MountPoint"], Level: config["Level"]}
-        })
+	plugins.Add("Inodepressure", func(config map[string]string) plugins.Plugin {
+		return &Inodepressure{MountPoint: config["MountPoint"], Level: config["Level"]}
+	})
 }
 
 func (i *Inodepressure) Description() string {
-        return "Use up a large no. of inodes"
+	return "Use up a large no. of inodes"
 }
 
 func (i *Inodepressure) Start() string {

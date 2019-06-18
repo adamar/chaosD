@@ -8,18 +8,18 @@ import (
 )
 
 type Networklatency struct {
-        Level string
-        Duration string
+	Level    string
+	Duration string
 }
 
 func init() {
-        plugins.Add("Networklatency", func(config map[string]string) plugins.Plugin {
-                return &Networklatency{Level: config["Level"], Duration: config["Duration"]}
-        })
+	plugins.Add("Networklatency", func(config map[string]string) plugins.Plugin {
+		return &Networklatency{Level: config["Level"], Duration: config["Duration"]}
+	})
 }
 
 func (n *Networklatency) Description() string {
-        return "Increase the latency for a single network interface"
+	return "Increase the latency for a single network interface"
 }
 
 func (n *Networklatency) Start() string {

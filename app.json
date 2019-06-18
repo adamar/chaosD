@@ -1,0 +1,7 @@
+{
+  "name": "chaosD",
+  "description": "Chaos Engineering",
+  "repository": "https://github.com/adamar/chaosd",
+  "keywords": ["golang"],
+  "success_url": "/"
+}

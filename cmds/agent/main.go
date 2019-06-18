@@ -2,7 +2,9 @@ package main
 
 import (
 	"fmt"
+	"encoding/json"
 	"github.com/adamar/chaosd/plugins"
+	"github.com/adamar/chaosd/common"
 	//_ "github.com/adamar/chaosd/plugins/inodepressure"
 	_ "github.com/adamar/chaosd/plugins/networklatency"
 	_ "github.com/adamar/chaosd/plugins/testplugin"
@@ -50,7 +52,9 @@ func (c *Client) loadAgentConfig() {
 	// read in config
 	err := viper.ReadInConfig()
 	if err != nil {
-		fmt.Println(err.Error())
+		fmt.Println("Using default agent config")
+	} else {
+		fmt.Println("Reading agent config in from disk")
 	}
 
 	// get dbpath 
@@ -62,7 +66,13 @@ func (c *Client) loadAgentConfig() {
 func (c *Client) loadExperiments() {
 
 	// Placeholder code until proper experiment loading is sorted
+	js, _ := common.GetJson("https://chaosd.s3.amazonaws.com/example-experiment.json")
 	config := make(map[string]string)
+	err := json.Unmarshal(js, &config)
+	if err != nil {
+		fmt.Println("Config file loading error")
+	}
+	//config := make(map[string]string)
         config["Level"] = "5"
 	config["Duration"] = "10"
         cons := plugins.EnabledPlugins["Testplugin"]

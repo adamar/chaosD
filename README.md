@@ -5,6 +5,6 @@
 
 ### Web UI
 
-<a href="https://heroku.com/deploy?template=https://github.com/adamar/chaosd/tree/web-ui" target="_blank"><img src="https://www.herokucdn.com/deploy/button.png"></a>
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/adamar/chaosd/tree/web-ui)
+
 Deploy the WebUI to Heroku
-<

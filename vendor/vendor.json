@@ -1,6 +1,9 @@
 {
 	"comment": "",
 	"ignore": "test",
+	"heroku": {
+                "install" : [ "./cmd/server/" ]
+         },
 	"package": [
 		{
 			"checksumSHA1": "KDUtjxO63r7L1aU9dT5KhQW4AdM=",

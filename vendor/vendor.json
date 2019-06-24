@@ -2,7 +2,7 @@
 	"comment": "",
 	"ignore": "test",
 	"heroku": {
-                "install" : [ "./cmd/server/" ]
+		"rootPath": "github.com/adamar/chaosd/cmds/server"
          },
 	"package": [
 		{

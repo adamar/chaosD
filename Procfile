@@ -1,1 +1,1 @@
-web: server
+web: cd cmds/server/ && server
